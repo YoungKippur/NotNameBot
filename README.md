@@ -6,6 +6,8 @@ ROS based nameless robot.
 * rosrun
 * rviz
 * rosnode / rostopic
+* rosrun rosserial_arduino serial_node.py /dev/ttyACM0
+* rostopic echo /chatter
 
 ## Codes
 * [Arduino](Arduino)
