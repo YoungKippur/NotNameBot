@@ -18,7 +18,7 @@ ROS based nameless robot.
 * [Rosserial](http://wiki.ros.org/rosserial)
 * [Navigation](http://wiki.ros.org/navigation)
 * [Init](https://roboticsbackend.com/make-ros-launch-start-on-boot-with-robot_upstart/)
-* [Cam](https://github.com/YoungKippur/IP-CAMERA) (by YoungKippur)
+* [Cam](https://github.com/YoungKippur/IP-CAMERA) (YoungKippur)
 
 # 
 ![image](https://user-images.githubusercontent.com/82680610/160292044-05cf89da-715c-4f46-a860-a5844a6c1a98.png)
