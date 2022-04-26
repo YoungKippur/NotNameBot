@@ -1,25 +1,25 @@
 # NotNameBot
-ROS based nameless robot.
+An -up to now- nameless robot based on the Robotics Operating System (ROS).
 
 ## ROS important commands (falta)
-* roscore
-* rosrun
-* rviz
-* rosnode / rostopic
-* rosrun rosserial_arduino serial_node.py /dev/ (Your serial port)
-* rostopic echo / (Your topic)
+* roscore - to start ROS environment
+* rosrun - to run a ROS command
+* rviz - to open the visualizer
+* rosnode / rostopic - to get info about a specific ROS node or topic
+* rostopic echo / \[your-topic\] - to print the topic data
+* rosrun rosserial_arduino serial_node.py \[serial-port\] - to connect the Arduino to the Raspberry
 
 ## Codes
 * [Arduino](arduino)
 * [Python](Python)
 
 ## Links
-* [ROS wiki](http://wiki.ros.org/Documentation)
-* [Rosserial](http://wiki.ros.org/rosserial)
-* [Navigation](http://wiki.ros.org/navigation)
+* [ROS Wiki](http://wiki.ros.org/Documentation)
+* [Rosserial (in ROS Wiki)](http://wiki.ros.org/rosserial)
+* [Navigation (in ROS Wiki)](http://wiki.ros.org/navigation)
 * [Init](https://roboticsbackend.com/make-ros-launch-start-on-boot-with-robot_upstart/)
-* [Twist](https://github.com/Reinbert/ros_diffdrive_robot/blob/master/ros_diffdrive_robot.ino)
-* [Cam](https://github.com/YoungKippur/IP-CAMERA) (YoungKippur)
+* [Twist (GitHub)](https://github.com/Reinbert/ros_diffdrive_robot/blob/master/ros_diffdrive_robot.ino)
+* [Camera (YoungKippur)](https://github.com/YoungKippur/IP-CAMERA)
 * [IMU 1](https://electropeak.com/learn/interfacing-mpu9250-spi-i2c-9-axis-gyro-accelerator-magnetometer-module-with-arduino/)
 * [IMU 2](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
 
