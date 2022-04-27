@@ -2,6 +2,7 @@
 An -up to now- nameless robot based on the Robotics Operating System (ROS).
 
 ## ROS important commands (falta)
+'''
 * roscore - to start ROS environment
 * rosrun - to run a ROS command
 * rviz - to open the visualizer
@@ -9,6 +10,7 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 * rostopic echo / \[your-topic\] - to print the topic data
 * rosrun rosserial_arduino serial_node.py \[serial-port\] - to connect the Arduino to the Raspberry
 * roslaunch server
+'''
 
 ## Codes
 * [Arduino](arduino)
