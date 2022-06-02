@@ -1,15 +1,14 @@
 # NotNameBot
 An -up to now- nameless robot based on the Robotics Operating System (ROS).
 
-## ROS important commands (falta)
-
-* ```roscore - to start ROS environment```
-* ```rosrun - to run a ROS command```
-* ```rviz - to open the visualizer```
-* ```rosnode / rostopic - to get info about a specific ROS node or topic```
-* ```rostopic echo / \[your-topic\] - to print the topic data```
-* ```rosrun rosserial_arduino serial_node.py \[serial-port\] - to connect the Arduino to the Raspberry```
-* ```roslaunch server```
+## ROS important commands (WIP)
+* ```roscore``` to start ROS environment (always first command).
+* ```rosrun``` to run a ROS command.
+* ```rviz``` to open the ROS visualizer.
+* ```rosnode``` or ```rostopic``` to get info about a specific ROS node or topic.
+* ```rostopic echo /[your-topic]``` to print data whenever is published in the topic.
+* ```rosrun rosserial_arduino serial_node.py [serial-port]``` to connect the Arduino to the Raspberry Pi thorugh serial port.
+* ```roslaunch server``` to launch a ROS server (only used for esp32, esp82 or similar).
 
 ## Codes
 * [Arduino](arduino)
