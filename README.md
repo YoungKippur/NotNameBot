@@ -23,6 +23,7 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 * [Camera (GitHub)](https://github.com/YoungKippur/IP-CAMERA)
 * [IMU Setup (Electropeak)](https://electropeak.com/learn/interfacing-mpu9250-spi-i2c-9-axis-gyro-accelerator-magnetometer-module-with-arduino/)
 * [IMU Calibration (Makersportal)](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
+* [IMU -RP](https://github.com/chrisspen/ros_mpu6050_node)
 
 # 
 ![image](https://user-images.githubusercontent.com/82680610/160292044-05cf89da-715c-4f46-a860-a5844a6c1a98.png)
