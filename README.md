@@ -11,7 +11,7 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 * ```roslaunch server``` to launch a ROS server (only used for esp32, esp82 or similar).
 
 ## Codes
-* [Arduino](arduino)
+* [Arduino](Arduino)
 * [Python](Python)
 
 ## Links
