@@ -9,6 +9,14 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 * ```rostopic echo /[your-topic]``` to print data whenever is published in the topic.
 * ```rosrun rosserial_arduino serial_node.py [serial-port]``` to connect the Arduino to the Raspberry Pi thorugh serial port.
 * ```roslaunch server``` to launch a ROS server (only used for esp32, esp82 or similar).
+## GIT important commands (WIP)
+* ```git push```
+* ```git add```
+* ```git commit -a```
+* ```git pull```
+## Other important commands (WIP)
+* ```ssh username@remote-pcs-ip```
+* ```readlink -f [file]```
 
 ## Codes
 * [Arduino](Arduino)
