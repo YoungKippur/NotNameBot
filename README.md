@@ -33,6 +33,7 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 * [IMU Calibration (Makersportal)](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
 * [IMU - RP](https://github.com/chrisspen/ros_mpu6050_node)
 * [Encoders - Arduino](https://automaticaddison.com/how-to-publish-wheel-odometry-information-over-ros/)
-
+#
+![WhatsApp Image 2022-07-20 at 23 55 31](https://user-images.githubusercontent.com/82680610/185521505-cee468ba-faf1-4973-8b66-a01958b17a59.jpeg)
 # 
 ![image](https://user-images.githubusercontent.com/82680610/160292044-05cf89da-715c-4f46-a860-a5844a6c1a98.png)
