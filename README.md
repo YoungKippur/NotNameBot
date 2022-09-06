@@ -5,15 +5,33 @@ An -up to now- nameless robot based on the Robotics Operating System (ROS).
 
 ### Robotics Operating System
 
-ROS (Robotics Operating System) is an operating system, complied above Linux, whose main goal is to provide all the tools needed to build a Robotics project. As ROS projects use to have many interconnected parts, the OS provides features, such as topics, messages, publishers, and subscribers, to establish communication between these parts. \
+ROS (Robotics Operating System) is an operating system, complied above Linux, whose main goal is to provide all the tools needed to build a Robotics project. As ROS projects use to have many interconnected parts, the OS provides features, such as topics, messages, publishers, and subscribers, to establish communication between these parts.
 
 To get started, download your preferred distro of ROS from the [official Wiki website](http://wiki.ros.org/ROS/Installation).
 > **Warning** \
 > This project uses the first version of ROS, so you shouldn't install ROS 2 as there could be many incompatibilities.
 
-#### Configuration
+After installing ROS, we need to source different locations to control them simultaneously thorugh the shell:
+```
+$ source /opt/ros/<distro>/setup.bash
+```
+Where <distro> needs to be replaced with your distro short name (e.g. kinetic, melodic, noetic, etc).
 
-#### Packaging
+Now, let's create a catkin workspace:
+```
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
+$ catkin_make
+```
+This commands should create the catkin repository. Inside it you will find the 'build', 'devel', and 'src' folders. Thus, we can source the 'devel' folder:
+```
+$ source devel/setup.bash
+```
+Let's create the package:
+```
+$ catkin_create_pkg not_name_bot std_msgs rospy roscpp
+```
+Then, we run ```catkin_make``` again to build the package.
 
 Now, we can start the ROS enviroment:
 ```
@@ -39,10 +57,31 @@ This informs the type of message, publishers and subscribers of this topic. If y
 $ rostopic echo /rosout_agg
 ```
 
-We can see nodes and topics in action by running a built-in example node.
+We can see nodes and topics in action by running a built-in example node:
 ```
 $ rosrun turtlesim turtlesim_node
 ```
+This command should open a new window with a little turtle in the center. If you run ```rosnode list``` you will see the new node ```/turtlesim``` in the list.
+
+Then, run in a new terminal:
+```
+$ rosrun turtlesim turtle_teleop_key
+```
+Then, press the arrow keys while this terminal is focused to let the turtle move around the window. 
+
+In this example, the ```/turtle_teleop_key``` node is publishing the pressed key information in the ```/turtle1/command_velocity``` topic, whereas the ```/turtlesim_node``` is subscribed and listens to each publication in the topic. 
+
+> **Note** (Optional)\
+> You can install the rqt_graph package:
+> ```
+> $ sudo apt-get install ros-<distro>-rqt
+> $ sudo apt-get install ros-<distro>-rqt-common-plugins
+> ```
+> And then run
+> ```
+> rosrun rqt_graph rqt_graph
+> ```
+> To visually see the nodes and topics graph.
 
 #### More
 * ```rviz``` to open the ROS visualizer.
