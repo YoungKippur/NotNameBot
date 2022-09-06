@@ -1,11 +1,17 @@
 # NotNameBot
 An -up to now- nameless robot based on the Robotics Operating System (ROS).
 
+## Overview
+
+The aim of this robot is to provide...
+
 ## Getting started
 
 ### Robotics Operating System
 
 ROS (Robotics Operating System) is an operating system, complied above Linux, whose main goal is to provide all the tools needed to build a Robotics project. As ROS projects use to have many interconnected parts, the OS provides features, such as topics, messages, publishers, and subscribers, to establish communication between these parts.
+
+#### Installation and configuration
 
 To get started, download your preferred distro of ROS from the [official Wiki website](http://wiki.ros.org/ROS/Installation).
 > **Warning** \
@@ -33,11 +39,13 @@ $ catkin_create_pkg not_name_bot std_msgs rospy roscpp
 ```
 Then, we run ```catkin_make``` again to build the package.
 
+#### ROS basic commands
+
 Now, we can start the ROS enviroment:
 ```
 $ roscore
 ```
-This command is the core of all the ROS enviroment and we must keep this bash terminal open while the project is running.\
+This command is the core of all the ROS enviroment and we must keep this bash terminal open while the project is running.
 
 ROS uses nodes to represent each of the indivual parts of the project. We can print all the active nodes:
 ```
@@ -57,6 +65,8 @@ This informs the type of message, publishers and subscribers of this topic. If y
 $ rostopic echo /rosout_agg
 ```
 
+#### Example
+
 We can see nodes and topics in action by running a built-in example node:
 ```
 $ rosrun turtlesim turtlesim_node
@@ -71,17 +81,16 @@ Then, press the arrow keys while this terminal is focused to let the turtle move
 
 In this example, the ```/turtle_teleop_key``` node is publishing the pressed key information in the ```/turtle1/command_velocity``` topic, whereas the ```/turtlesim_node``` is subscribed and listens to each publication in the topic. 
 
-> **Note** (Optional)\
+> **Note** (optional)\
 > You can install the rqt_graph package:
 > ```
 > $ sudo apt-get install ros-<distro>-rqt
 > $ sudo apt-get install ros-<distro>-rqt-common-plugins
 > ```
-> And then run
+> And then we can visually see the nodes and topics:
 > ```
 > rosrun rqt_graph rqt_graph
 > ```
-> To visually see the nodes and topics graph.
 
 #### More
 * ```rviz``` to open the ROS visualizer.
@@ -104,27 +113,27 @@ Arduino is the most known series of microcontrollers for Electronics and Robotic
 #### Instalation
 You can download the Arduino IDE from the [official webpage](https://www.arduino.cc/en/software).
 
+Now let's install the rosserial libraries:
+```
+sudo apt-get install ros-<distro>-rosserial-arduino
+sudo apt-get install ros-<distro>-rosserial
+```
+
 #### Deploying
 First of all, we need to run the Arduino node connected through rosserial:
 ```
 $ rosrun rosserial_arduino serial_node.py [your-serial-port]
 ```
-Then, we need to upload the Arduino code (which?) to the Arduino UNO using the Arduino IDE.
+Then, we can upload the Arduino code (which?) to the Arduino UNO using the Arduino IDE.
 > **Note** \
 > In case you are using an esp32, esp82 or similar, it's possible to establish a connection through WiFi. Firstly, launch the server:
 > ```
 > roslaunch server
 > ```
-> Then....
-
-## GIT important commands (WIP)
-* ```git push```
-* ```git add```
-* ```git commit -a```
-* ```git pull```
+> Then...
 
 ## External links
-* [ROS Wiki](http://wiki.ros.org/Documentation)
+* [ROS Wiki documentation](http://wiki.ros.org/Documentation)
 * [Rosserial (in ROS Wiki)](http://wiki.ros.org/rosserial)
 * [Navigation (in ROS Wiki)](http://wiki.ros.org/navigation)
 * [Init](https://roboticsbackend.com/make-ros-launch-start-on-boot-with-robot_upstart/)
