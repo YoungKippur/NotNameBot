@@ -141,7 +141,7 @@ Then, we can upload the Arduino code (which?) to the Arduino UNO using the Ardui
 * [Camera (GitHub)](https://github.com/YoungKippur/IP-CAMERA)
 * [IMU Setup (Electropeak)](https://electropeak.com/learn/interfacing-mpu9250-spi-i2c-9-axis-gyro-accelerator-magnetometer-module-with-arduino/)
 * [IMU Calibration (Makersportal)](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
-* [IMU - RP](https://github.com/chrisspen/ros_mpu6050_node)
+* [IMU - RP](https://automaticaddison.com/visualize-imu-data-using-the-mpu6050-ros-and-jetson-nano/)
 * [Encoders - Arduino](https://automaticaddison.com/how-to-publish-wheel-odometry-information-over-ros/)
 #
 ![WhatsApp Image 2022-07-20 at 23 55 31](https://user-images.githubusercontent.com/82680610/185521505-cee468ba-faf1-4973-8b66-a01958b17a59.jpeg)
