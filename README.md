@@ -92,10 +92,6 @@ In this example, the ```/turtle_teleop_key``` node is publishing the pressed key
 > rosrun rqt_graph rqt_graph
 > ```
 
-#### More
-* ```rviz``` to open the ROS visualizer.
-* See [ROS Wiki](http://wiki.ros.org/Documentation).
-
 ### Connecting to Raspberry Pi
 Raspberry Pi is a series of single-board computers chiefly for educational and recreational purpose. Raspberry Pi uses the Raspberry Pi OS, a distribution of Debian which is able run ROS on top. We will use a Raspberry Pi for hosting the ROS enviroment of the whole project.
 
@@ -110,7 +106,7 @@ $ ssh [username]@[remote-pcs-ip]
 
 Arduino is the most known series of microcontrollers for Electronics and Robotics projetcs. In our project, we use an Arduino UNO to control the motors of the robot. To use an Arduino within a ROS enviroment, we need to establish a connection between the Arduino and the Raspberry Pi through serial port, using the USB port of the Raspberry Pi.
 
-#### Instalation
+#### Installation
 You can download the Arduino IDE from the [official webpage](https://www.arduino.cc/en/software).
 
 Now let's install the rosserial libraries:
@@ -131,6 +127,31 @@ Then, we can upload the Arduino code (which?) to the Arduino UNO using the Ardui
 > roslaunch server
 > ```
 > Then...
+
+### Rotatory Lidar
+
+Lidar, acronym Light Detection and Ranging or Laser Imaging, Detection and Ranging, is a rotatory sensor used in this project to map obstacles in a 2-dimensional surface. We use the library ```rplidar_ros``` to establish the connection between the Raspberry Pi and the Lidar.
+
+#### Testing
+First, download and build the ```rplidar_ros``` library from its [GitHub repository](https://github.com/Slamtec/rplidar_ros).
+
+To launch the Lidar node, write the code:
+```
+roslaunch rplidar_ros rplidar.launch
+```
+
+Now, you can write ```rviz``` into the terminal to open the ROS Visualizer. Inside the rviz window, you click the button Add and select the By topic list. Then, click the topic of your Lidar, in our case, ```/scan```. Then, rviz most probably will give an error. To fix it, you should change the Fixed Frame variable inside Global Options from ```/map``` to ```/laser```.
+
+#### Hector Slam
+
+Hector Slam is a library which can interpret the Lidar reading and return instead a map of the enviroment. By using odometry techniques, it will compute the movement and rotation of the robot. You can install this library from its [GitHub repository](https://github.com/tu-darmstadt-ros-pkg/hector_slam).
+
+To launch the Hector Slam node, write:
+```
+roslaunch hector_slam_launch tutorial.launch
+```
+
+If you're running this from your RaspberryPi, then you would like to open the rviz and add the ```/map``` topic to see the generated map. You can try to slightly move your robot and see the cursor moving in the visualizer.  
 
 ## External links
 * [ROS Wiki documentation](http://wiki.ros.org/Documentation)
