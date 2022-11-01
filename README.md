@@ -142,7 +142,7 @@ roslaunch rplidar_ros rplidar.launch
 
 Now, you can write ```rviz``` into the terminal to open the ROS Visualizer. Inside the rviz window, you click the button Add and select the By topic list. Then, click the topic of your Lidar, in our case, ```/scan```. Then, rviz most probably will give an error. To fix it, you should change the Fixed Frame variable inside Global Options from ```/map``` to ```/laser```.
 
-#### Hector Slam
+### Hector Slam
 
 Hector Slam is a library which can interpret the Lidar reading and return instead a map of the enviroment. By using odometry techniques, it will compute the movement and rotation of the robot. You can install this library from its [GitHub repository](https://github.com/tu-darmstadt-ros-pkg/hector_slam).
 
@@ -153,18 +153,35 @@ roslaunch hector_slam_launch tutorial.launch
 
 If you're running this from your RaspberryPi, then you would like to open the rviz and add the ```/map``` topic to see the generated map. You can try to slightly move your robot and see the cursor moving in the visualizer.  
 
+Saving a map.
+
+## Tree of knowledge
+
+Localization and navigation theory.
+
+## Localization and navigation
+
+In order to build a fully autonomous robot, we are going to use the built-in Navigation Stack from ROS. You can install it with
+```
+sudo apt-get install ros-<distro>-navigation
+```
+
+### The problem
+Classically, different sensors, such as encoders or IMUs are used in order to get the robot's odometry (current position in the map). Nevertheless, in this project we provide a navigation built only upon Hector Slam.
+Hector Slam publishes a transform ```map -> odom``` which hypotetically would give the current robot's odometry. However, since ```map_server``` is also publishing in ```/map```, we should not use this transformation.
+Thus, we might use an undocumented feature, namely setting ```pub_odometry = true```, which in turn will make Hector Slam to publish robot's odometry in the topic ```/scanmatcher_odom```. In order to get the proper transform we refer to the ```odomtransformer.py``` node.
+Thus, we are able to use the ```amcl``` node with the ```map_server``` publishing the map.
+
 ## External links
 * [ROS Wiki documentation](http://wiki.ros.org/Documentation)
 * [Rosserial (in ROS Wiki)](http://wiki.ros.org/rosserial)
-* [Navigation (in ROS Wiki)](http://wiki.ros.org/navigation)
 * [Init](https://roboticsbackend.com/make-ros-launch-start-on-boot-with-robot_upstart/)
 * [Twist (GitHub)](https://github.com/Reinbert/ros_diffdrive_robot/blob/master/ros_diffdrive_robot.ino)
 * [Camera (GitHub)](https://github.com/YoungKippur/IP-CAMERA)
-* [IMU Setup (Electropeak)](https://electropeak.com/learn/interfacing-mpu9250-spi-i2c-9-axis-gyro-accelerator-magnetometer-module-with-arduino/)
-* [IMU Calibration (Makersportal)](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
-* [IMU - RP](https://automaticaddison.com/visualize-imu-data-using-the-mpu6050-ros-and-jetson-nano/)
+* [IMU setup (Electropeak)](https://electropeak.com/learn/interfacing-mpu9250-spi-i2c-9-axis-gyro-accelerator-magnetometer-module-with-arduino/)
+* [IMU calibration (Makersportal)](https://makersportal.com/blog/calibration-of-an-inertial-measurement-unit-imu-with-raspberry-pi-part-ii)
+* [IMU visualization](https://automaticaddison.com/visualize-imu-data-using-the-mpu6050-ros-and-jetson-nano/)
 * [Encoders - Arduino](https://automaticaddison.com/how-to-publish-wheel-odometry-information-over-ros/)
-#
-![WhatsApp Image 2022-07-20 at 23 55 31](https://user-images.githubusercontent.com/82680610/185521505-cee468ba-faf1-4973-8b66-a01958b17a59.jpeg)
-#
-![image](https://user-images.githubusercontent.com/82680610/160292044-05cf89da-715c-4f46-a860-a5844a6c1a98.png)
+* [Navigation (in ROS Wiki)](http://wiki.ros.org/navigation)
+* [Navigation setup (Automatic Addison)](https://automaticaddison.com/how-to-set-up-the-ros-navigation-stack-on-a-robot/)
+* [Navigation only with hector_mapping (yoraish)](https://yoraish.com/2021/09/08/a-full-autonomous-stack-a-tutorial-ros-raspberry-pi-arduino-slam/) 
