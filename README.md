@@ -9,7 +9,9 @@ The aim of this robot is to provide...
 
 ### Robotics Operating System
 
-ROS (Robotics Operating System) is an operating system, complied above Linux, whose main goal is to provide all the tools needed to build a Robotics project. As ROS projects use to have many interconnected parts, the OS provides features, such as topics, messages, publishers, and subscribers, to establish communication between these parts.
+ROS (Robotics Operating System) is an operating system, complied above Linux, whose main goal is to provide all the tools needed to build a Robotics project. As ROS projects use to have many interconnected parts, the OS provides features, such as topics, messages, publishers, and subscribers, to establish communication between these parts. Most of the documentation of the used libraries could be found in the [ROS Wiki](http://wiki.ros.org/).
+
+The main motivation for using ROS is the existance of the [navigation library](http://wiki.ros.org/navigation), which we will fully explain in the next section.
 
 #### Installation and configuration
 
@@ -23,61 +25,63 @@ $ source /opt/ros/<distro>/setup.bash
 ```
 Where <distro> needs to be replaced with your distro short name (e.g. kinetic, melodic, noetic, etc).
 
-Now, let's create a catkin workspace:
+The workspace is the folder in which all our projects and libraries would be located. ROS uses a custom build system, catkin, in where we will create our packages.  By now, let's just create a catkin workspace:
 ```
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/
 $ catkin_make
 ```
-This commands should create the catkin repository. Inside it you will find the 'build', 'devel', and 'src' folders. Thus, we can source the 'devel' folder:
+Inside the new catkin folder you will find the 'build', 'devel', and 'src' folders. Thus, you might source the 'devel' folder:
 ```
 $ source devel/setup.bash
 ```
-Let's create the package:
+> **Note** \
+> You might prefer to remember this last command by heart, since it usually works as a panacea. Make sure to run it before rosrunning or roslaunching any other command, especially if it's from an installed package.
+
+A package is a collection of codes built to be runned through the shell. In order to create the first package, you should run:
 ```
 $ catkin_create_pkg not_name_bot std_msgs rospy roscpp
 ```
-Then, we run ```catkin_make``` again to build the package.
+Thus, you create the package ```not_name_bot``` with dependences on ```std_msgs``` (for custom variable types), ```rospy``` (for using Python) and ```roscpp``` (for using C++). After the package is created, you can build it with ```catkin_make```.
 
 #### ROS basic commands
 
-Now, we can start the ROS enviroment:
+First of all, you should write:
 ```
 $ roscore
 ```
-This command is the core of all the ROS enviroment and we must keep this bash terminal open while the project is running.
+This command is the core of all the ROS enviroment and you must keep this bash terminal open while the project is running. You might do this every time you start the ROS project. 
 
-ROS uses nodes to represent each of the indivual parts of the project. We can print all the active nodes:
+A node represents and individual piece of code. In ROS, different nodes communicate to each other. This structure is very convenient to keep our project separated and organized. You can print all the active nodes with:
 ```
 $ rosnode list
 ```
-You will see the only running node is ```/rosout```. This node is always running since the ROS enviroment is started. We can print info about it:
+You will see that the only running node is ```/rosout```. This node is always running since the ROS enviroment is started. We can print info about it with:
 ```
 $ rosnode info /rosout
 ```
-
-ROS uses topics to send data between different nodes. Publishers can write data into a node, whereas subscribers can read data from a node. From the previous command, we learnt that ```/rosout``` publishes data to the topic ```/rosout_agg``` and is subscribed to the topic ```/rosout```. To print the info about a topic, write:
+The communication between nodes ocurrs through topics. Publishers can write data into a topic, whereas subscribers can read data from a topic. From the previous command, we learnt that ```/rosout``` publishes data to the topic ```/rosout_agg``` and is subscribed to the topic ```/rosout```. To print the info about a topic, write:
 ```
 $ rostopic info /rosout_agg
 ```
-This informs the type of message, publishers and subscribers of this topic. If you want to print the data currently held by the topic, use:
+This informs the type of message (msg), publishers and subscribers of this topic. If you want to print the data currently held by the topic, use:
 ```
 $ rostopic echo /rosout_agg
 ```
+> **Note**\
+> With this command you can check the information published in a topic through the shell, thus, it might be convenient for debugging. 
 
 #### Example
 
-We can see nodes and topics in action by running a built-in example node:
+We can see nodes and topics in action by running a built-in example node. First, rosrun the node:
 ```
 $ rosrun turtlesim turtlesim_node
 ```
-This command should open a new window with a little turtle in the center. If you run ```rosnode list``` you will see the new node ```/turtlesim``` in the list.
-
-Then, run in a new terminal:
+This command should open a new window with a little turtle in the center. If you run ```rosnode list``` you will see the new node ```/turtlesim``` in the list. You must not close the shell, otherwise the node will be killed. Then, open another terminal and rosrun the second node:
 ```
 $ rosrun turtlesim turtle_teleop_key
 ```
-Then, press the arrow keys while this terminal is focused to let the turtle move around the window. 
+Thus, you can press the arrow keys while this shell is focused and let the turtle move around the other window.
 
 In this example, the ```/turtle_teleop_key``` node is publishing the pressed key information in the ```/turtle1/command_velocity``` topic, whereas the ```/turtlesim_node``` is subscribed and listens to each publication in the topic. 
 
@@ -97,10 +101,16 @@ Raspberry Pi is a series of single-board computers chiefly for educational and r
 
 #### Installation
 
+Install
+
+#### Connection
+
 We first begin the connection from your computer to the Raspberry Pi through ssh:
 ```
 $ ssh [username]@[remote-pcs-ip]
 ```
+
+Exports
 
 ### Preparing the Arduino
 
@@ -115,12 +125,17 @@ sudo apt-get install ros-<distro>-rosserial-arduino
 sudo apt-get install ros-<distro>-rosserial
 ```
 
+#### Differential drive
+In this project, we use a [differential wheeled robot](https://en.wikipedia.org/wiki/Differential_wheeled_robot).
+
+Explanation.
+
 #### Deploying
 First of all, we need to run the Arduino node connected through rosserial:
 ```
 $ rosrun rosserial_arduino serial_node.py [your-serial-port]
 ```
-Then, we can upload the Arduino code (which?) to the Arduino UNO using the Arduino IDE.
+Then, we can upload the Arduino code to the Arduino UNO using the Arduino IDE.
 > **Note** \
 > In case you are using an esp32, esp82 or similar, it's possible to establish a connection through WiFi. Firstly, launch the server:
 > ```
