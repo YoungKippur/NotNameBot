@@ -1,5 +1,6 @@
 # NotNameBot
 An -up to now- nameless robot based on the Robotics Operating System (ROS).
+
 ![image](https://user-images.githubusercontent.com/82680610/199367322-5d0fb02f-fce2-4f9b-b1e5-340259bee235.png)
 
 ## Overview
