@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/devel
+
+Name: carto_map_server
+Description: Description of carto_map_server
+Version: 1.12.13
+Cflags: -I/home/kippur/catkin_ws/src/oko_slam/ros_ws/src/carto_map_server/include
+Libs: -L${prefix}/lib -limage_loader
+Requires: roscpp tf nav_msgs

@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/install
+
+Name: big_boy_2dnav
+Description: Description of big_boy_2dnav
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

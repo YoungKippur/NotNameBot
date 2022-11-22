@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/devel
+
+Name: kamu_robotu_map_analyzer
+Description: Description of kamu_robotu_map_analyzer
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lkamu_robotu_map_analyzer /usr/lib/x86_64-linux-gnu/libyaml-cpp.so.0.6.2
+Requires: roscpp std_msgs message_runtime

@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/devel
+
+Name: visualization_msgs
+Description: Description of visualization_msgs
+Version: 1.11.10
+Cflags: -I/home/kippur/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs message_runtime std_msgs

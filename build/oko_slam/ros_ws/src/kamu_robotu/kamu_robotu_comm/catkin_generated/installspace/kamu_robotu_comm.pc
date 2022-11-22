@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/install
+
+Name: kamu_robotu_comm
+Description: Description of kamu_robotu_comm
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lkamu_robotu_comm
+Requires: serial std_msgs sensor_msgs geometry_msgs nav_msgs

@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/devel
+
+Name: bno055_imu
+Description: Description of bno055_imu
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lbno055_imu
+Requires: roscpp std_msgs sensor_msgs geometry_msgs nav_msgs tf

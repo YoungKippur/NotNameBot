@@ -1,0 +1,8 @@
+prefix=/home/kippur/catkin_ws/devel
+
+Name: kamu_robotu_navigation
+Description: Description of kamu_robotu_navigation
+Version: 0.3.5
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
