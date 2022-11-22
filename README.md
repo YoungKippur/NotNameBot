@@ -103,16 +103,21 @@ Raspberry Pi is a series of single-board computers chiefly for educational and r
 
 #### Installation
 
-Install
-
 #### Connection
 
 We first begin the connection from your computer to the Raspberry Pi through ssh:
 ```
-$ ssh [username]@[remote-pcs-ip]
+$ ssh [username]@[rpi-ip]
 ```
 
-Exports
+You need to install all the libraries and download all the files in the RaspberryPi in order to use it as the core of the robot.
+  
+> **Note** (optional)\
+> If you want to open a rviz window within the computer, you might first export
+> ``` 
+> export ROS_MASTER_URI=[rpi-ip]:[port]
+> ```
+> The ROS master port is 11311 by default.
 
 ### Preparing the Arduino
 
@@ -130,14 +135,13 @@ sudo apt-get install ros-<distro>-rosserial
 #### Differential drive
 In this project, we use a [differential wheeled robot](https://en.wikipedia.org/wiki/Differential_wheeled_robot).
 
-Explanation.
-
 #### Deploying
 First of all, we need to run the Arduino node connected through rosserial:
 ```
 $ rosrun rosserial_arduino serial_node.py [your-serial-port]
 ```
 Then, we can upload the Arduino code to the Arduino UNO using the Arduino IDE.
+
 > **Note** \
 > In case you are using an esp32, esp82 or similar, it's possible to establish a connection through WiFi. Firstly, launch the server:
 > ```
@@ -170,12 +174,19 @@ roslaunch hector_slam_launch tutorial.launch
 
 If you're running this from your RaspberryPi, then you would like to open the rviz and add the ```/map``` topic to see the generated map. You can try to slightly move your robot and see the cursor moving in the visualizer.  
 
-Saving a map.
+### Saving and serving a map
 
-## Tree of knowledge
-
-Localization and navigation theory.
-
+You can generate a map by running the previous line and moving your robot slowly. The ```hector_slam``` node publishes the generated map onto the ```/map``` topic. When the map generation is ready, you should run
+```
+rosrun map_server map_saver -f my_map
+```
+This line will save the hitherto  map on two files: ```my_map.yaml``` (data file) and ```my_map.pgm``` (image file).
+Thus, if you write
+```
+rosrun map-server map-server my_map.yaml
+```
+the saved map will be continously served on the ```/map``` topic.
+  
 ## Localization and navigation
 
 In order to build a fully autonomous robot, we are going to use the built-in Navigation Stack from ROS. You can install it with
@@ -187,7 +198,13 @@ sudo apt-get install ros-<distro>-navigation
 Classically, different sensors, such as encoders or IMUs are used in order to get the robot's odometry (current position in the map). Nevertheless, in this project we provide a navigation built only upon Hector Slam.
 Hector Slam publishes a transform ```map -> odom``` which hypotetically would give the current robot's odometry. However, since ```map_server``` is also publishing in ```/map```, we should not use this transformation.
 Thus, we might use an undocumented feature, namely setting ```pub_odometry = true```, which in turn will make Hector Slam to publish robot's odometry in the topic ```/scanmatcher_odom```. In order to get the proper transform we refer to the ```odomtransformer.py``` node.
-Thus, we are able to use the ```amcl``` node with the ```map_server``` publishing the map.
+Thus, we are able to use the ```amcl``` node with the ```map_server``` publishing the map to estimate our current location on a pre-generated map.
+With this estimated position, we are abble to run ```move_base``` to create a plan for reaching the goal sent through rviz.
+  
+A launch file ```bigboy_config.launch``` is given in order to be able to run all this commands simultaneously. To launch it, you can write
+```
+roslaunch [path]/bigboy_config.launch
+```
 
 ## External links
 * [ROS Wiki documentation](http://wiki.ros.org/Documentation)
